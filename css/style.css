@@ -1,3 +1,4 @@
+/* Grundläggande CSS */
 
 * {
     box-sizing: border-box;
@@ -6,11 +7,13 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
+/* Headern har en mörkgrön bakgrund. Logotyp och webbplatsens namn
+placeras bredvid varandra med Flexbox. */
+
 header {
-    background-color:#263b2e;
+    background-color: #263b2e;
     padding: 1rem;
 }
 
@@ -20,7 +23,7 @@ header {
     gap: 0.5rem;
 }
 
-.header-logotype h2 {
+.header-title {
     color: white;
     font-size: 0.9rem;
 }
@@ -30,26 +33,36 @@ header img {
     height: auto;
 }
 
-nav {
+/* Navigation med Flexbox. Länkarna placeras under varandra
+på Mobile First/mindre skärmar. Länkarna har vit text och vita linjer. */
+
+nav ul {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
+    padding: 0;
+    list-style-type: none;
 }
 
-nav a {
+nav ul li {
+    border-bottom: 1px solid white;
+    padding: 0.4rem 0;
+}
+
+nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid white;
     font-size: 0.8rem;
 }
+
+/* Hero-sektionen innehåller herobild, huvudrubrik, introduktionstext och "Upptäck Norrgläntan"-knappen.
+För Mobile/mindre skärmar ligger herobilden ovanför texten och texterna är centrerade. */
 
 .hero {
     padding: 0 1rem 1rem;
     color: black;
-    background-color:#f1f3ef;
+    background-color: #f1f3ef;
     text-align: center;
-    
 }
 
 .hero img {
@@ -67,12 +80,24 @@ nav a {
 
 .hero a {
     color: white;
-    background-color:#263b2e;
+    background-color: #263b2e;
+    margin-top: 2rem;
+}
+
+/* Gemensamt utseende för både "Upptäck Norrgläntan"-knappen och "Planera ditt besök"-knappen */
+
+.button {
     text-decoration: none;
     padding: 0.5rem 1rem;
     display: inline-block;
-    margin-top: 2rem;
+    border-radius: 5px;
 }
+
+.hero .button:hover {
+    background-color: #3f5c49;
+}
+
+/* Introduktionstext */
 
 .intro {
     padding: 2rem 1rem;
@@ -84,12 +109,10 @@ nav a {
     font-size: 0.9rem;
 }
 
+/* Här är sektionen för bilderna/korten för aktiviteter. Anpassningar för bildstorlek och padding för ett luftigare innehåll. Texten är centrerad. */
+
 .activities {
     padding: 2rem 1rem;
-}
-
-.activities h2 {
-    text-align: center;
 }
 
 .activities img {
@@ -97,16 +120,37 @@ nav a {
     height: auto;
 }
 
+.activities h2 {
+    text-align: center;
+}
+
+/* Bilderna/korten för aktiviteter är i en Flexbox kolumn */
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Aktivitetsbilderna har en ljusgrå kant och mellanrum mellan bilderna.
+Rubrikerna och texterna har marginal på sidorna för att få mer luft. */
+
 .activity-card {
     margin-bottom: 2rem;
     border: 1px solid #e0e0e0;
 }
 
-.activity-card h3,
+.activity-card h3 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 .activity-card p {
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+/* Här är sektionen "Planera ditt besök" som har en mörkgrön bakgrund och centrerad vit text.
+"Planera ditt besök"-knappen är vit och ändrar färg med button hover. */
 
 .visit {
     background-color: #263b2e;
@@ -118,11 +162,14 @@ nav a {
 .visit a {
     color: black;
     background-color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    display: inline-block;
     margin-top: 1rem;
 }
+
+.visit .button:hover {
+    background-color: #f1f3ef;
+}
+
+/*Footer med logotyp, kontaktinformation och länkar.*/
 
 footer {
     background-color: #f1f3ef;
@@ -145,18 +192,7 @@ footer img {
 .footer-text {
     text-align: center;
     font-size: 0.8rem;
-    margin-top: 0rem;
-}
-
-.footer-links a {
-    color: black;
-    text-decoration: none;
-
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
+    margin-top: 0;
 }
 
 .footer-content {
@@ -164,7 +200,128 @@ footer img {
     justify-content: space-between;
 }
 
-.contact h3,
+.contact h3 {
+    font-size: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
 .footer-links h3 {
     font-size: 1rem;
+}
+
+.footer-links a {
+    color: black;
+    text-decoration: none;
+}
+
+/*Desktop och anpassning för större och bredare skärmar.*/
+
+@media (min-width: 800px) {
+
+    /*Använder Flexbox för att placera logotypen till vänster
+    och navigationen till höger*/
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Navigation ändras från kolumn till rad så att länkarna
+    ligger bredvid varandra på Desktop. */
+
+    nav ul {
+        flex-direction: row;
+        margin-top: 0;
+        gap: 2rem;
+    }
+
+    nav ul li {
+        border-bottom: none;
+    }
+
+    /* För desktop används herobilden som bakgrundsbild och texten
+    hamnar till vänster över herobilden. */
+
+    .hero {
+        background-image: url(../images/hero.jpg);
+        background-size: cover;
+        background-position: center;
+        padding: 8rem 4rem;
+        color: white;
+        text-align: left;
+    }
+
+    /*Herobilden från mobile blir dold på desktop.*/
+
+    .hero img {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        max-width: 400px;
+    }
+
+    .hero p {
+        max-width: 380px;
+    }
+
+    .intro {
+        padding: 3rem 8rem;
+    }
+
+    .intro p {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    /* Sektionen för aktiviteter får mer padding på sidorna. */
+
+    .activities {
+        padding: 2rem 8rem;
+    }
+
+    /* De tre bilderna/korten på aktiviteter får tre lika stora kolumner med Grid */
+
+    .card-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+
+    /* "Planera ditt besök"-sektionen använder Flexbox på desktop så att texten
+    ligger till vänster och knappen till höger. */
+
+    .visit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .visit-text {
+        max-width: 40%;
+    }
+
+    /* Footern har Flexbox för att placera innehållet
+    bredvid varandra. */
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .footer-content {
+        gap: 4rem;
+        width: 45%;
+        justify-content: space-between;
+    }
 }
